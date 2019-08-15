@@ -12,7 +12,8 @@ h3 = []
 hasteInicial = []
 micaeportugalindos = True
 
-def verificacao(dQual, pQual, jogadas):
+def verificacao(dQual, pQual):
+    global jogadas
     if len(dQual) == 0:
         print("MOVIMENTO INVÁLIDO")
         jogadas = jogadas
@@ -30,6 +31,7 @@ def verificacao(dQual, pQual, jogadas):
                 del(dQual[-1])
                 jogadas = jogadas + 1
                 print("Ja foram %s jogada(s)" % jogadas)
+    return jogadas
         
 def ganhador():
     global micaeportugalindos, h1, h2, h3, nPecas, jogadas, hasteInicial
@@ -47,7 +49,6 @@ def ganhador():
             for i in range(nPecas, 0, -1):
                 h1.append(i)
                 hasteInicial.append(i)
-        
             print()
             print("Haste 1:", h1)
             print("Haste 2:", h2)
@@ -58,11 +59,10 @@ def ganhador():
             print('Obrigado por jogar!!!')
             micaeportugalindos = False
             sys.exit()
-##        if jogadas < 2**nPecas-1:
-##            print("Você não atingiu o número mínimo de jogadas! Você roubou,ladrao")
+    return h1, h2, h3, micaeportugalindos, jogadas, hasteInicial
         
 def torre(dQual, pQual, h1, h2, h3):
-    verificacao(dQual, pQual, jogadas)
+    verificacao(dQual, pQual)
     print()
     print("Haste 1:", h1)
     print("Haste 2:", h2)
